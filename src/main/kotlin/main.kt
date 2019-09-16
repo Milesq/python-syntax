@@ -15,11 +15,7 @@ fun File.readAll(): String {
 fun main(args: Array<String>) {
     try {
         val switches = args.filter { it[0] == '-' }.map { it.trim('-') }
-        val fileName = args.find { it[0] != '-' }
-
-        if (fileName == null) {
-            throw Exception("Expected filename!");
-        }
+        val fileName = args.find { it[0] != '-' } ?: throw Exception("Expected filename!")
 
         val content = File(fileName)
 
@@ -27,7 +23,8 @@ fun main(args: Array<String>) {
             throw Exception("File not exists!")
         }
 
-        pythonSyntax(content.readAll(), switches.find { it == "no-semi" } == null)
+        val transformed = pythonSyntax(content.readAll(), switches.find { it == "no-semi" } == null)
+        println(transformed)
     } catch(e: Exception) {
         println(e)
     }
