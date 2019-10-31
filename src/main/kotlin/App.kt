@@ -1,32 +1,31 @@
 package com.gmail.wmilosz88.pythonSyntax
 
-// import java.io.File
+import java.io.File
 
-// fun File.readAll(): String {
-//     var content = ""
+fun File.readAll(): String {
+    var content = ""
 
-//     this.forEachLine {
-//         content += it + '\n'
-//     }
+    this.forEachLine {
+        content += it + "\n"
+    }
 
-//     return content
-// }
+    return content
+}
 
 fun main(args: Array<String>) {
-    println("Hello, World")
-    // try {
-    //     val switches = args.filter { it[0] == '-' }.map { it.trim('-') }
-    //     val fileName = args.find { it[0] != '-' } ?: throw Exception("Expected filename!")
+    try {
+        val switches = args.filter { it[0] == '-' }.map { it.trim('-') }
+        val fileName = args.find { it[0] != '-' } ?: throw Exception("Expected filename!")
 
-    //     val content = File(fileName)
+        val content = File(fileName)
 
-    //     if (!content.exists()) {
-    //         throw Exception("File not exists!")
-    //     }
+        if (!content.exists()) {
+            throw Exception("File not exists!")
+        }
 
-    //     val transformed = pythonSyntax(content.readAll(), switches.find { it == "no-semi" } == null)
-    //     println(transformed)
-    // } catch(e: Exception) {
-    //     println(e)
-    // }
+        val transformed = pythonSyntax(content.readAll(), switches.find { it == "no-semi" } == null)
+        println(transformed)
+    } catch(e: Exception) {
+        println(e)
+    }
 }
