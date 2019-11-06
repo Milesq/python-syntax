@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
         }
 
         val transformed = pythonSyntax(content.readAll(), switches.find { it == "no-semi" } == null)
-        save("output", fileName, transformed)
+        save("output", fileName.let { it.split("/", "\\").last() }, transformed)
     } catch(e: Exception) {
         println(e)
     }
