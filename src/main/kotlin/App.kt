@@ -12,6 +12,14 @@ fun File.readAll(): String {
     return content
 }
 
+fun save(directory: String, fileName: String, content: String) {
+    File(directory).mkdir()
+
+    val file =  File("$directory/$fileName")
+    file.createNewFile()
+    file.writeText(content)
+}
+
 fun main(args: Array<String>) {
     try {
         val switches = args.filter { it[0] == '-' }.map { it.trim('-') }
@@ -24,7 +32,7 @@ fun main(args: Array<String>) {
         }
 
         val transformed = pythonSyntax(content.readAll(), switches.find { it == "no-semi" } == null)
-        println(transformed)
+        save("output", fileName, transformed)
     } catch(e: Exception) {
         println(e)
     }
