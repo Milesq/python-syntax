@@ -18,5 +18,7 @@ fun blockCode(code: String): String {
 
             currentIndent = it.indent()
             ret
-        }.joinToString("\n") + '}'
+        }.joinToString("\n").let {
+            it + "\n}".repeat(currentIndent / 4)
+        }
 }
