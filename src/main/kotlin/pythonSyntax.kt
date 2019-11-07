@@ -15,7 +15,7 @@ fun String.indent(): Int {
 }
 
 fun pythonSyntax(code: String, insertSemi: Boolean = true): String =
-    blockCode(code)
-        .let { wrapStatements(it) }
+    code.let { wrapStatements(it) }
+        .let { blockCode(it) }
         .let { if (insertSemi) insertSemicolons(it) else it }
 
