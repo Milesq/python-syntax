@@ -14,7 +14,8 @@ fun String.indent(): Int {
     return indent
 }
 
-fun pythonSyntax(code: String, insertSemi: Boolean = true): String {
-    val transformCode = blockCode(code)
-    return if (insertSemi) insertSemicolons(transformCode) else transformCode
-}
+fun pythonSyntax(code: String, insertSemi: Boolean = true): String =
+    blockCode(code)
+        .let { wrapStatements(it) }
+        .let { if (insertSemi) insertSemicolons(it) else it }
+
