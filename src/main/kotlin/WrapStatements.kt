@@ -8,7 +8,6 @@ fun wrapStatements(code: String): String {
     return code.split("\n").map {
         it.split(" ").map statements@{ el ->
             if (skip) {
-                println("skip")
                 return@statements " "
             }
             val statement = statements.find { it == el }
@@ -22,7 +21,7 @@ fun wrapStatements(code: String): String {
 
                 val beg = line.indexOf(statement) + statement.length
 
-                "$statement (${line.slice(beg..line.lastIndex)})"
+                "$statement (${line.slice(beg..line.lastIndex)}) {"
             } else {
                 el
             }
